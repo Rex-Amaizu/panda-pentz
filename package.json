@@ -27,8 +27,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "set NODE_ENV=development&& web: node index.js",
-    "start-prod": "set NODE_ENV=production&& web: node index.js"
+    "start": "web: node index.js"
   },
   "engines": {
     "node": "14.17.3"

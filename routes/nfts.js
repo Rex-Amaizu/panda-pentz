@@ -12,19 +12,19 @@ const cors=require('cors');
 
 
 //route fetch all Pentz Galleries from database.
-router.get('/', cors(), async (req, res) => {
+router.get('/', async (req, res) => {
      
      try {
         const nfts = await Nft.find();
         res.send(nfts);
      }catch(error) {
+        console.log(error);
          res.status(500).send(error);
-         console.log(error);
      }
  });
 
 // route to manage an already created pentz gallery.
-router.get('/manage', cors(), async (req, res) => {
+router.get('/manage', async (req, res) => {
 
     try {
         const pentZName = req.query.gallery_name;
@@ -35,13 +35,13 @@ router.get('/manage', cors(), async (req, res) => {
     
         res.send(nft);
     }catch(error) {
-        res.status(500).send(error);
         console.log(error)
+        res.status(500).send(error);
 ;    }
 });
 
 // route to add an nft to an already created pentz gallery.
-router.post('/add', cors(), async (req, res) => {
+router.post('/add', async (req, res) => {
 
     try {
         const new_nft = req.body.nft; // getting object trying to add
@@ -53,13 +53,13 @@ router.post('/add', cors(), async (req, res) => {
         
         res.json({success: "New nft added to gallery successfully", nft});
     }catch(error) {
-        res.status(500).send(error);
         console.log(error);
+        res.status(500).send(error);
     }
 });
 
 // route to delete an nft from from a pentz gallery.
-router.post('/del', cors(), async (req, res) => {
+router.post('/del', async (req, res) => {
 
     try {
         const del_nft = req.body.nft; // getting object to delete
@@ -71,13 +71,13 @@ router.post('/del', cors(), async (req, res) => {
         
         res.json({success: "Nft deleted successfully"});
     }catch(error) {
-        res.status(500).send(error);
         console.log(error);
+        res.status(500).send(error);
     }
 });
 
 // route to save a pentz gallery with the associated nfts.
-router.post('/save', cors(), async (req, res) => {
+router.post('/save', async (req, res) => {
 
     try {
             // defining the request parameters.
@@ -110,13 +110,13 @@ router.post('/save', cors(), async (req, res) => {
         nfts: nft.nfts
         });
     }catch(error) {
-        res.status(500).send(error);
         console.log(error);
+        res.status(500).send(error);
     }
 });
 
 // route to get all other nfts belonging to a specific wallet.
-router.post('/', cors(), async (req, res) => {
+router.post('/', async (req, res) => {
     
    
     try {
@@ -214,20 +214,20 @@ router.post('/', cors(), async (req, res) => {
                     // error handling for any error from getting nfts owned.
                     let erMsg = error.body.error_message;
                     res.send(erMsg);
-                    process.exit(error);
+                    //process.exit(error);
                 });
             }
     
         }
     } catch(error) {
-        res.status(500).send(error);
         console.log(error);
+        res.status(500).send(error);
     }
 
 });
 
 // route to return only pentz owned by a wallet.
-router.post('/pentz', cors(), async (req, res) => {
+router.post('/pentz', async (req, res) => {
 
     try {
             // defining an array counter value.
@@ -1773,14 +1773,14 @@ router.post('/pentz', cors(), async (req, res) => {
                     //error handling for error from error in getting pentz mint addresses.
                     let erMsg = error.body.error_message;
                     res.send(erMsg);
-                    process.exit(error);
+                    //process.exit(error);
                 });
             }
         
         }
     }catch(error) {
-        res.status(500).send(error);
         console.log(error);
+        res.status(500).send(error);
     }
 
 });

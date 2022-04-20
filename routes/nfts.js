@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
 // route to manage an already created pentz gallery.
 router.get('/manage', async (req, res) => {
 
-    const pentZName = req.body.gallery_name;
+    const pentZName = req.query.gallery_name;
 
     const nft = await Nft.findOne({gallery_name: pentZName});
   

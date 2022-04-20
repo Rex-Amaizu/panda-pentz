@@ -92,7 +92,9 @@ router.post('/save', cors(), async (req, res) => {
 // route to get all other nfts belonging to a specific wallet.
 router.post('/', cors(), async (req, res) => {
     
-    // defining an array counter value.
+   
+    try {
+         // defining an array counter value.
     var _counter = 0;
 
     // defining the wallet address parameter.
@@ -189,7 +191,10 @@ router.post('/', cors(), async (req, res) => {
                 process.exit(error);
             });
         }
-    
+   
+    }
+    } catch(error) {
+        res.status(500).send(error);
     }
 
 });

@@ -11,7 +11,6 @@ require('./startup/prod')(app);
 
 const port = process.env.PORT || 3001;
 const env = process.env.NODE_ENV || 'development'
-console.log(env);
 const server = app.listen(port, () => winston.info(`Listening on port ${port}...`));
 
 module.exports = server;

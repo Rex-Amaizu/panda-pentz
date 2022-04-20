@@ -8,16 +8,17 @@ const request = require('request');
 const fetch = require('node-fetch');
 const _ = require('underscore');
 const { exit } = require('process');
+const cors=require('cors');
 
 
 //route fetch all Pentz Galleries from database.
-router.get('/', async (req, res) => {
+router.get('/', cors(), async (req, res) => {
      const nfts = await Nft.find();
      res.send(nfts);
  });
 
 // route to manage an already created pentz gallery.
-router.get('/manage', async (req, res) => {
+router.get('/manage', cors(), async (req, res) => {
 
     const pentZName = req.query.gallery_name;
 
@@ -29,7 +30,7 @@ router.get('/manage', async (req, res) => {
 });
 
 // route to add an nft to an already created pentz gallery.
-router.post('/add', async (req, res) => {
+router.post('/add', cors(), async (req, res) => {
 
     const new_nft = req.body.nft; // getting object trying to add
     const filter = req.body.gallery; // getting filter to target the collection
@@ -42,7 +43,7 @@ router.post('/add', async (req, res) => {
 });
 
 // route to delete an nft from from a pentz gallery.
-router.post('/del', async (req, res) => {
+router.post('/del', cors(), async (req, res) => {
 
     const del_nft = req.body.nft; // getting object to delete
     const filter = req.body.gallery; // getting filter to target the collection
@@ -55,7 +56,7 @@ router.post('/del', async (req, res) => {
 });
 
 // route to save a pentz gallery with the associated nfts.
-router.post('/save', async (req, res) => {
+router.post('/save', cors(), async (req, res) => {
 
     // defining the request parameters.
     const gName = req.body.gallery_name;
@@ -89,7 +90,7 @@ router.post('/save', async (req, res) => {
 });
 
 // route to get all other nfts belonging to a specific wallet.
-router.post('/', async (req, res) => {
+router.post('/', cors(), async (req, res) => {
     
     // defining an array counter value.
     var _counter = 0;
@@ -194,7 +195,7 @@ router.post('/', async (req, res) => {
 });
 
 // route to return only pentz owned by a wallet.
-router.post('/pentz', async (req, res) => {
+router.post('/pentz', cors(), async (req, res) => {
 
     // defining an array counter value.
     var _counter = 0;
